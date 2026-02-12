@@ -1,0 +1,39 @@
+*,
+*>* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: grey;
+
+  --text-color: black;
+  --border-color: #aaa;
+  --input-bkground: white;
+  --background-color: hsl(0, 0%, 90%);
+  --placeholder-color: #aaa;
+}
+
+.dark {
+  --text-color: white;
+  --border-color: #777;
+  --input-bkground: #3b4252;
+  --background-color: #20242c;
+  --placeholder-color: #888;
+}
+
+

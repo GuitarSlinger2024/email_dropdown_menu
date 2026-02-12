@@ -1,34 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
+import './styles/app.css'
+import Dropdown from './components/Dropdown'
 
-function App() {
-  const [count, setCount] = useState(0)
+function App({ mode }) {
+  const [currentEmail, setCurrentEmail] = useState('')
+  const [emailOptions, setEmailOptions] = useState([
+    'what@ever.com',
+    'who@played.first',
+    'thisisreallylongthisisreallylongthisisreallylongthisisreallylongthisisreallylongthisisreallylong@lotsa.text',
+  ])
+
+  useEffect(() => {
+    if (!currentEmail) return
+    console.log(currentEmail)
+    const opts = emailOptions.filter(x => x)
+    if (currentEmail) opts.push(currentEmail)
+    if (!emailOptions.includes(currentEmail)) {
+      setEmailOptions(opts)
+      updateEmails(opts)
+    }
+  }, [currentEmail])
+
+  //  email options can also be updated from Dropdown.jsx
+
+  function updateEmails(addresses) {
+    //  This is where a fetch can be used to access backend
+    console.log(
+      '%cList of addresses:',
+      'text-decoration: underline; font-weight: 700'
+    )
+    console.log(addresses)
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+    <main id="main">
+      <h1>Email dropdown</h1>
+      <Dropdown
+        placeHolder={'Ender or Choose an email address'}
+        options={emailOptions}
+        setOptions={setEmailOptions}
+        currentOpt={currentEmail}
+        setCurrentOpt={setCurrentEmail}
+        updateDb={updateEmails}
+        emptyMsg={'No email addresses have been entered'}
+        className={'email'}
+      />
+      <p className='text'>
+        You can pick an email in the dropdown list, or add to the list by typing in a new email address.
       </p>
-    </>
+      <p className='text'>
+        Really long email addresses (too long for the input) can be seen in full once the input field is focussed.
+      </p>
+    </main>
   )
 }
 

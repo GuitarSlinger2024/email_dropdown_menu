@@ -1,0 +1,201 @@
+import React, { useState, useRef, useEffect } from 'react'
+import trash from '../_img/trash.png'
+import '../styles/dropdown.css'
+
+function Dropdown({
+  placeHolder,
+  options,
+  setOptions,
+  currentOpt,
+  setCurrentOpt,
+  updateDb,
+  emptyMsg,
+  className,
+}) {
+  const [showList, setShowList] = useState(false)
+  const [value, setValue] = useState(currentOpt)
+  const myRef = useRef()
+
+  function keyDown(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      validateEmailInput()
+    }
+  }
+
+  //  Validate an email after the input field is blurred
+  function validateEmailInput() {
+    //  Used when enter is pressed instead of clicking an option
+    const check = validateEmail(myRef.current.textContent)
+    if (!check) {
+      return
+    }
+    myRef.current.blur()
+    console.log('Creating New Email')
+    console.log(myRef.current.textContent)
+    setCurrentOpt(myRef.current.textContent)
+    setValue(createEmailValue(myRef.current.textContent))
+  }
+
+  const validateEmail = email => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+  }
+
+  function handleChange(e) {
+    setValue(createEmailValue(e.target.value))
+  }
+
+  function createEmailValue(opt) {
+    console.log(opt)
+    const strIndex = opt.indexOf('@')
+    const name = opt.slice(0, strIndex)
+    const domain = opt.slice(strIndex)
+    return (
+      <div
+        className="emailOpt"
+        onClick={e => {
+          optionClicked(e)
+        }}
+      >
+        <p className="emailName">{name}</p>
+        <p className="emailDomain">{domain}</p>
+      </div>
+    )
+  }
+
+  function optionClicked(e) {
+    let target = e.target
+    console.log(target.className)
+    if (target.className === 'empty') return
+    target =
+      target.className === 'emailName' || target.className === 'emailDomain'
+        ? (target = target.parentElement)
+        : target
+    console.log('%c' + target.className, 'background: lightgreen')
+    setCurrentOpt(target.textContent)
+    setValue(createEmailValue(target.textContent))
+  }
+
+  return (
+    <div className={`form-container ${showList ? ' show' : ''}`}>
+      <div className={`dropdown ${className}`}>
+        <div className="input-container">
+          <div
+            ref={myRef}
+            className="input"
+            value={value}
+            contentEditable={'true'}
+            placeholder={placeHolder}
+            onChange={handleChange}
+            onKeyDown={keyDown}
+            onFocus={() => {
+              document
+                .querySelectorAll('.show')
+                .forEach(visible => visible.classList.remove('show'))
+              setShowList(true)
+              setValue(myRef.current.textContent)
+              setTimeout(function () {
+                const range = document.createRange()
+                const selection = window.getSelection()
+                range.selectNodeContents(myRef.current)
+                range.collapse(false) // <-- Set the cursor at the end of the selection
+                selection?.removeAllRanges()
+                selection?.addRange(range)
+                myRef.current.focus()
+              }, 0)
+            }}
+            onBlur={() => {
+              validateEmailInput()
+              setTimeout(() => {
+                setShowList(false)
+              }, 150)
+            }}
+          >
+            {value}
+          </div>
+        </div>
+
+        <div className={`datalist-container`}>
+          <datalist className="datalist">
+            {options.length > 0 &&
+              options.map((opt, i) => (
+                <div
+                  className="option"
+                  key={i}
+                >
+                  {createOption(opt)}
+                </div>
+              ))}
+            {options.length === 0 && (
+              <div
+                style={{
+                  textAlign: 'center',
+                  inlineSize: '100%',
+                }}
+                className="empty"
+                onClick={e => {
+                  optionClicked(e)
+                }}
+              >
+                {emptyMsg}
+              </div>
+            )}
+          </datalist>
+        </div>
+      </div>
+    </div>
+  )
+
+
+  function createOption(opt) {
+    const strIndex = opt.indexOf('@')
+    const name = opt.slice(0, strIndex)
+    const domain = opt.slice(strIndex)
+    return (
+      <>
+        <div
+          className="emailOpt"
+          onClick={e => {
+            optionClicked(e)
+          }}
+        >
+          <p className="emailName">{name}</p>
+          <p className="emailDomain">{domain}</p>
+        </div>
+
+        <p className="trashCan">
+          <img
+            src={trash}
+            alt="delete button"
+            onClick={deleteAddress}
+          />
+        </p>
+      </>
+    )
+  }
+
+  function createTemplateOption(opt) {
+    return opt
+  }
+
+  function deleteAddress(e) {
+    if (e.target.nodeName !== 'IMG') return
+    const trashText = e.target.parentElement.parentElement.textContent
+    const newArray = options.filter(opt => {
+      return opt !== trashText
+    })
+    console.log(newArray)
+    setOptions(newArray)
+    updateDb(newArray)
+    console.log(currentOpt)
+    console.log(trashText)
+    console.log(currentOpt === trashText)
+    if (currentOpt === trashText) setValue('')
+  }
+}
+
+export default Dropdown
