@@ -80,6 +80,7 @@ function Dropdown({
     console.log('%c' + target.className, 'background: lightgreen')
     setCurrentOpt(target.textContent)
     setValue(createEmailValue(target.textContent))
+    document.getElementById('errorMsg').classList.remove('showErrorMsg')
   }
 
   return (

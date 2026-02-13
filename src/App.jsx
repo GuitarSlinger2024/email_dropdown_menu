@@ -34,7 +34,7 @@ function App({ mode }) {
 
   return (
     <main id="main">
-      <h1>Email dropdown</h1>
+      <h2 className='title'>Email dropdown</h2>
       <Dropdown
         placeHolder={'Ender or Choose an email address'}
         options={emailOptions}

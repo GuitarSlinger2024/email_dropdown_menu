@@ -1,14 +1,14 @@
 #main {
   position: relative;;
-  width: 80vw;
   width: 28em;
+  height: 28em;
   padding: 1em 2em 15em;
   background-color: lightyellow;
   border-radius: 1em;
   box-shadow: .5em .5em 1em grey;
 }
 
-h1 {
+.title {
   text-align: center;
   margin-bottom: .3em;
 }
