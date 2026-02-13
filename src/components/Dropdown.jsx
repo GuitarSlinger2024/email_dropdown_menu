@@ -101,11 +101,12 @@ function Dropdown({
               setTimeout(function () {
                 const range = document.createRange()
                 const selection = window.getSelection()
-                range.selectNodeContents(myRef.current)
-                range.collapse(false) // <-- Set the cursor at the end of the selection
-                selection?.removeAllRanges()
-                selection?.addRange(range)
-                myRef.current.focus()
+                  
+                range.setStart(myRef.current.childNodes[0], 0)
+                range.collapse(true)
+                  
+                selection.removeAllRanges()
+                selection.addRange(range)
               }, 0)
             }}
             onBlur={() => {

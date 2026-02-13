@@ -7,7 +7,7 @@ function App({ mode }) {
   const [emailOptions, setEmailOptions] = useState([
     'what@ever.com',
     'who@played.first',
-    'thisisreallylongthisisreallylongthisisreallylongthisisreallylongthisisreallylongthisisreallylong@lotsa.text',
+    'thisisanexampleofareallylongemailaddress@domain.name'
   ])
 
   useEffect(() => {
@@ -49,7 +49,10 @@ function App({ mode }) {
         You can pick an email in the dropdown list, or add to the list by typing in a new email address.
       </p>
       <p className='text'>
-        Really long email addresses (too long for the input) can be seen in full once the input field is focussed.
+        Really long email addresses can be seen in full in the input field when the input is focussed.
+      </p>
+      <p className='text'>
+        It should be easy to apply any database technology that you are familiar with.
       </p>
     </main>
   )
