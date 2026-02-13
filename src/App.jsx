@@ -51,7 +51,7 @@ function App({ mode }) {
         It should be easy to apply any database technology that you are familiar with / suits your needs.
       </p>
       <p className='text'>
-        You can pick an email in the dropdown list, or add to it by typing in a new email address.
+        You can pick an email in the dropdown list, or add to the list by typing in a new email address.
         Really long email addresses can be seen in full when the input is focussed.
       </p>
       <h3 id='errorMsg'>Incorrect email format</h3>
