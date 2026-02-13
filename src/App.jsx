@@ -7,7 +7,7 @@ function App({ mode }) {
   const [emailOptions, setEmailOptions] = useState([
     'what@ever.com',
     'who@played.first',
-    'this_is_an_example_of_a_really_long_email_address@domain.name'
+    'this_is_an_example_of_a_really_long_email_address@domain.ext'
   ])
 
   useEffect(() => {
@@ -48,7 +48,7 @@ function App({ mode }) {
       <br />
       <p className='text'>
         This app provides complete CRUD operations to maintain a short list of email addresses, like for sending bulk invitations to a party (birthday, office, neighborhood, etc.).
-        It should be easy to apply any database technology that you are familiar with.
+        It should be easy to apply any database technology that you are familiar with / suits your needs.
       </p>
       <p className='text'>
         You can pick an email in the dropdown list, or add to it by typing in a new email address.
