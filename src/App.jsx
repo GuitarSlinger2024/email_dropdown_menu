@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import './styles/app.css'
+import './app.css'
 import Dropdown from './components/Dropdown'
 
 function App({ mode }) {
