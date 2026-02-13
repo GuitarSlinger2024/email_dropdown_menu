@@ -34,7 +34,7 @@ function App({ mode }) {
 
   return (
     <main id="main">
-      <h2 className='title'>Email dropdown</h2>
+      <h2 className='title'>Email Dropdown List</h2>
       <Dropdown
         placeHolder={'Ender or Choose an email address'}
         options={emailOptions}
@@ -47,12 +47,12 @@ function App({ mode }) {
       />
       <br />
       <p className='text'>
-        You can pick an email in the dropdown list, or add to the list by typing in a new email address.
-        Really long email addresses can be seen in full in the input field when the input is focussed.
-      </p>
-      <p className='text'>
         This app provides complete CRUD operations to maintain a short list of email addresses, like for sending bulk invitations to a party (birthday, office, neighborhood, etc.).
         It should be easy to apply any database technology that you are familiar with.
+      </p>
+      <p className='text'>
+        You can pick an email in the dropdown list, or add to it by typing in a new email address.
+        Really long email addresses can be seen in full when the input is focussed.
       </p>
       <h3 id='errorMsg'>Incorrect email format</h3>
     </main>
