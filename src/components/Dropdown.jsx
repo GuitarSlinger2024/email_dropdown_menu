@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import trash from '../_img/trash.png'
-import '../styles/dropdown.css'
+import './dropdown.css'
 
 function Dropdown({
   placeHolder,
