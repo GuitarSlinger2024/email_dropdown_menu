@@ -13,13 +13,20 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body, html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 body {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background-color: grey;
+  min-height: fit-content;
+  background-color: rgb(186, 186, 186);
+  padding: 1.5em;
 
   --text-color: black;
   --border-color: #aaa;

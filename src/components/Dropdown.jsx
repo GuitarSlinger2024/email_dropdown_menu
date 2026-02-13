@@ -27,9 +27,11 @@ function Dropdown({
   function validateEmailInput() {
     //  Used when enter is pressed instead of clicking an option
     const check = validateEmail(myRef.current.textContent)
-    if (!check) {
+    if (!check && myRef.current.textContent !== '') {
+      document.getElementById('errorMsg').classList.add('showErrorMsg')
       return
     }
+    document.getElementById('errorMsg').classList.remove('showErrorMsg')
     myRef.current.blur()
     console.log('Creating New Email')
     console.log(myRef.current.textContent)

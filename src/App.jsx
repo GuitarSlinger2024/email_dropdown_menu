@@ -7,7 +7,7 @@ function App({ mode }) {
   const [emailOptions, setEmailOptions] = useState([
     'what@ever.com',
     'who@played.first',
-    'thisisanexampleofareallylongemailaddress@domain.name'
+    'this_is_an_example_of_a_really_long_email_address@domain.name'
   ])
 
   useEffect(() => {
@@ -45,15 +45,16 @@ function App({ mode }) {
         emptyMsg={'No email addresses have been entered'}
         className={'email'}
       />
+      <br />
       <p className='text'>
         You can pick an email in the dropdown list, or add to the list by typing in a new email address.
-      </p>
-      <p className='text'>
         Really long email addresses can be seen in full in the input field when the input is focussed.
       </p>
       <p className='text'>
+        This app provides complete CRUD operations to maintain a short list of email addresses, like for sending bulk invitations to a party (birthday, office, neighborhood, etc.).
         It should be easy to apply any database technology that you are familiar with.
       </p>
+      <h3 id='errorMsg'>Incorrect email format</h3>
     </main>
   )
 }

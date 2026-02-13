@@ -1,7 +1,11 @@
 #main {
+  position: relative;;
   width: 80vw;
-  width: 30em;
+  width: 28em;
   padding: 1em 2em 15em;
+  background-color: lightyellow;
+  border-radius: 1em;
+  box-shadow: .5em .5em 1em grey;
 }
 
 h1 {
@@ -12,6 +16,21 @@ h1 {
 p.text {
   margin: 1em 0 1em;
   font-weight: 600;
-  text-wrap: balance;
+  text-align: left;
+}
+
+#errorMsg {
+  position: absolute;
+  bottom: 1em;
+  left: 0;
+  right: 0;
+  width: fit-content;
   text-align: center;
+  margin: auto;
+  color: red;
+  display: none;
+}
+
+#errorMsg.showErrorMsg {
+  display: block;
 }
