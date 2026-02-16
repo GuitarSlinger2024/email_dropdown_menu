@@ -54,7 +54,7 @@ function App({ mode }) {
         You can pick an email in the dropdown list, or add to the list by typing in a new email address.
         Really long email addresses can be seen in full when the input is focussed.
       </p>
-      <p>
+      <p className='text'>
         Try entering or deleting some addresses, they reset each time the page is re-loaded. The github repo for this can be found at:
       </p>
       <small style={{fontSize: '.75em', textAlign: 'center', display: 'block', marginBlockStart: '1em'}}>
